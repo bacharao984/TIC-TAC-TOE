@@ -1,0 +1,149 @@
+///////BACHARAO BHUKYA PRE-FINAL YEAR BTECH IN CSE NIT ROURKELA///////
+#include <bits/stdc++.h>
+using namespace std;
+
+char grid[10] = {'o','1','2','3','4','5','6','7','8','9'};
+
+int checkwin();
+void board();
+
+int main()
+{
+	int player = 1;
+	int i;
+	int choice;
+
+    char symbol;
+    do
+    {
+        board();
+        player=(player%2)?1:2;
+
+        cout << "Player " << player << ", enter a number:  ";
+        cin >> choice;
+
+        symbol=(player == 1) ? 'X' : 'O';
+
+        if (choice == 1 && grid[1] == '1')
+
+            grid[1] = symbol;
+        else if (choice == 2 && grid[2] == '2')
+
+            grid[2] = symbol;
+        else if (choice == 3 && grid[3] == '3')
+
+            grid[3] = symbol;
+        else if (choice == 4 && grid[4] == '4')
+
+            grid[4] = symbol;
+        else if (choice == 5 && grid[5] == '5')
+
+            grid[5] = symbol;
+        else if (choice == 6 && grid[6] == '6')
+
+            grid[6] = symbol;
+        else if (choice == 7 && grid[7] == '7')
+
+            grid[7] = symbol;
+        else if (choice == 8 && grid[8] == '8')
+
+            grid[8] = symbol;
+        else if (choice == 9 && grid[9] == '9')
+
+            grid[9] = symbol;
+        else
+        {
+            cout<<"Invalid move ";
+
+            player--;
+            cin.ignore();
+            cin.get();
+        }
+        i=checkwin();
+
+        player++;
+    }while(i==-1);
+    board();
+    if(i==1)
+
+        cout<<"Yahooo..! "<<"==>\aPlayer "<<--player<<" win ";
+    else
+        cout<<"==>\aGame draw";
+
+    cin.ignore();
+    cin.get();
+    return 0;
+}
+
+/***************
+    FUNCTION TO RETURN GAME STATUS
+    1 FOR GAME IS OVER WITH RESULT
+    -1 FOR GAME IS IN PROGRESS
+    O GAME IS OVER AND NO RESULT
+****************/
+
+int checkwin()
+{
+    if (grid[1] == grid[2] && grid[2] == grid[3])
+
+        return 1;
+    else if (grid[4] == grid[5] && grid[5] == grid[6])
+
+        return 1;
+    else if (grid[7] == grid[8] && grid[8] == grid[9])
+
+        return 1;
+    else if (grid[1] == grid[4] && grid[4] == grid[7])
+
+        return 1;
+    else if (grid[2] == grid[5] && grid[5] == grid[8])
+
+        return 1;
+    else if (grid[3] == grid[6] && grid[6] == grid[9])
+
+        return 1;
+    else if (grid[1] == grid[5] && grid[5] == grid[9])
+
+        return 1;
+    else if (grid[3] == grid[5] && grid[5] == grid[7])
+
+        return 1;
+    else if (grid[1] != '1' && grid[2] != '2' && grid[3] != '3' 
+                    && grid[4] != '4' && grid[5] != '5' && grid[6] != '6' 
+                  && grid[7] != '7' && grid[8] != '8' && grid[9] != '9')
+
+        return 0;
+    else
+        return -1;
+}
+
+
+/***********************
+     FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
+************************/
+
+
+void board()
+{
+    system("cls");
+    cout << "\n\n\tTIC TAC TOE GAME\n\n";
+
+    cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
+    cout << endl;
+    cout << " __ __ ___" << endl;
+    cout << "|     |     |     |" << endl;
+    cout << "|  " << grid[1] << "  |  " << grid[2] << "  |  " << grid[3] << "  |  " << endl;
+
+    cout << "|__|_|__|" << endl;
+    cout << "|     |     |     |" << endl;
+
+    cout << "|  " << grid[4] << "  |  " << grid[5] << "  |  " << grid[6] << "  |  " << endl;
+
+    cout << "|__|_|__|" << endl;
+    cout << "|     |     |     |" << endl;
+
+    cout << "|  " << grid[7] << "  |  " << grid[8] << "  |  " << grid[9] << "  |  " << endl;
+
+    cout << "|__|_|__|" << endl << endl;
+   // cout << "_______" << endl;
+}
